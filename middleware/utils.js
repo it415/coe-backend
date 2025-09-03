@@ -26,14 +26,10 @@ const connectDBMiddleware = async (req, res, next) => {
 
 // CORS Middleware
 const corsMiddleware = (req, res, next) => {
-  const allowedOrigins = [
-    "http://localhost:3000",
-    "http://192.168.1.133:3000",
-    "https://coe.lineablu.com",
-  ];
+  const allowedOrigins = ["http://localhost:5001", "https://coe.lineablu.com"];
   const origin = req.headers.origin;
 
-  if (allowedOrigins.includes(origin)) {
+  if (allowedOrigins.includes(origin) || true) {
     res.header("Access-Control-Allow-Origin", origin);
   }
 

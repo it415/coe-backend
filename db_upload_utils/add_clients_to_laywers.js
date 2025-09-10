@@ -106,7 +106,10 @@ const assignClientsToLawyer = async (lawyerEmail, clientNames) => {
 
     // Update lawyer's assigned_clients (avoid duplicates)
     lawyer.assigned_clients = [
-      ...new Set([...lawyer.assigned_clients, ...clientIds]),
+      ...new Set([
+        ...lawyer.assigned_clients.map((id) => id.toString()),
+        ...clientIds,
+      ]),
     ];
 
     // Save the updated lawyer document

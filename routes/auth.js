@@ -1,6 +1,7 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const { body, validationResult } = require("express-validator");
+const { formatClientList } = require("../utils/helpers");
 const Lawyer = require("../models/lawyers");
 const Client = require("../models/clients");
 
@@ -104,7 +105,7 @@ router.post("/login", validation, async (req, res) => {
       lawyer: {
         id: lawyer._id,
         email: lawyer.email,
-        assigned_clients: lawyer.assigned_clients,
+        assigned_clients: formatClientList(lawyer.assigned_clients),
       },
     });
   } catch (error) {
